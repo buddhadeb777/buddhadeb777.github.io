@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buddhadeb | Developer & Creator</title>
+    <title>Buddhadeb | Indie Dev & Creator</title>
     
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -20,11 +20,28 @@
                     },
                     colors: {
                         theme: {
-                            bg: '#F9F9F9',       // Off-White
-                            text: '#4A5D4E',     // Dark Muted Green/Gray
-                            primary: '#BE6464',  // Dusty Rose
-                            sage: '#8BA888',     // Sage Green
-                            olive: '#6B8E6A'     // Olive Green
+                            // Extracted from the uploaded purple gradient image
+                            bg: '#F6F3FB',           // Very light lavender/off-white
+                            text: '#120024',         // Darkest deep navy/purple
+                            primary: '#8A3FFC',      // Mid-tone vivid purple (Action/Accent)
+                            primaryHover: '#6A26CD', // Slightly darker purple for hovers
+                            secondary: '#DDB3FF',    // Light lavender for borders/subtle accents
+                            footerBg: '#1A0536',     // Deep dark purple for footer
+                            footerText: '#EAD8FF'    // Soft light purple/white for footer text
+                        }
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.4s ease-out forwards',
+                        'bounce-slight': 'bounceSlight 2s infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        bounceSlight: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-3px)' },
                         }
                     }
                 }
@@ -34,337 +51,296 @@
     
     <style>
         body {
-            background-color: #F9F9F9;
-            color: #4A5D4E;
-            overflow-x: hidden;
+            background-color: #F6F3FB;
+            color: #120024;
+            -webkit-font-smoothing: antialiased;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
         
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #F9F9F9; }
-        ::-webkit-scrollbar-thumb { background: #8BA888; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #6B8E6A; }
+        /* Hide scrollbar for a cleaner look, but keep functionality */
+        ::-webkit-scrollbar { width: 0px; background: transparent; }
 
-        /* Card Hover Animations */
-        .hover-card {
+        /* Minimal Card Hover Effects with purple tint */
+        .minimal-card {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(221, 179, 255, 0.4); /* Subtle purple border */
         }
-        .hover-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 20px -8px rgba(74, 93, 78, 0.2);
-            border-color: #6B8E6A;
+        .minimal-card:hover {
+            border-color: #8A3FFC;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(138, 63, 252, 0.15);
+        }
+
+        .tab-btn {
+            transition: all 0.3s ease;
         }
         
-        /* Link Button Animation */
-        .link-btn {
-            transition: all 0.2s ease;
-        }
-        .link-btn:hover {
-            transform: scale(1.02);
-            border-color: #6B8E6A;
-            background-color: white;
+        /* Utility class to hide sections smoothly */
+        .hidden-section {
+            display: none !important;
         }
     </style>
 </head>
-<body class="antialiased flex flex-col min-h-screen">
+<body class="w-full relative">
 
-    <nav class="fixed w-full z-50 bg-theme-bg/90 backdrop-blur-md border-b border-theme-sage/30 shadow-sm">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-14">
-                <a href="#" class="text-xl font-bold tracking-tight text-theme-text">
-                    Buddhadeb<span class="text-theme-primary">.</span>
+    <div class="flex-grow flex flex-col items-center py-12 px-4 sm:px-6 w-full">
+        <header class="text-center w-full max-w-2xl mx-auto mb-10 animate-fade-in">
+            <div class="relative inline-block mb-4">
+                <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border-2 border-theme-secondary shadow-md mx-auto">
+                    <!-- Placeholder image styled to fit the purple theme -->
+                    <img src="https://placehold.co/200x200/DDB3FF/120024?text=B" alt="Buddhadeb" class="w-full h-full object-cover">
+                </div>
+                <!-- Subtle decorative dot -->
+                <div class="absolute bottom-1 right-1 w-4 h-4 bg-theme-primary rounded-full border-2 border-theme-bg"></div>
+            </div>
+            
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-theme-text tracking-tight mb-2">Buddhadeb</h1>
+            <p class="text-theme-text/80 font-medium flex items-center justify-center gap-2 text-sm sm:text-base">
+                <i class="fa-solid fa-gamepad text-theme-primary"></i> Indie Dev & Tool Creator
+            </p>
+        </header>
+
+        <nav class="w-full max-w-md mx-auto mb-8 animate-fade-in" style="animation-delay: 0.1s;">
+            <div class="flex p-1 bg-theme-secondary/20 rounded-2xl relative shadow-inner">
+                <button id="btn-socials" onclick="switchTab('socials')" class="tab-btn flex-1 py-3 px-4 rounded-xl text-sm font-semibold relative z-10 bg-white text-theme-primary shadow-sm border border-theme-secondary/50">
+                    Social Links
+                </button>
+                <button id="btn-projects" onclick="switchTab('projects')" class="tab-btn flex-1 py-3 px-4 rounded-xl text-sm font-semibold relative z-10 text-theme-text/60 hover:text-theme-primary">
+                    Projects
+                </button>
+            </div>
+        </nav>
+
+        <main class="w-full max-w-4xl mx-auto pb-12 flex-grow">
+            
+            <!-- SECTION 1: Social Media Links -->
+            <section id="section-socials" class="w-full max-w-lg mx-auto flex flex-col gap-3 animate-fade-in">
+                
+                <a href="#" class="minimal-card flex items-center p-4 bg-white rounded-2xl group">
+                    <div class="w-12 h-12 flex items-center justify-center rounded-xl bg-theme-secondary/20 mr-4 group-hover:bg-[#FF0000]/10 transition-colors">
+                        <i class="fa-brands fa-youtube text-xl text-theme-primary group-hover:text-[#FF0000] transition-colors"></i>
+                    </div>
+                    <div class="flex-grow">
+                        <h3 class="font-bold text-theme-text group-hover:text-theme-primary transition-colors">YouTube</h3>
+                        <p class="text-xs text-theme-text/60 font-medium">Devlogs & Tutorials</p>
+                    </div>
+                    <i class="fa-solid fa-arrow-right text-theme-secondary group-hover:text-theme-primary transition-colors group-hover:translate-x-1 transform duration-300"></i>
                 </a>
-                <div class="hidden md:flex space-x-6">
-                    <a href="#links" class="text-sm font-semibold hover:text-theme-primary transition-colors">Links</a>
-                    <a href="#creations" class="text-sm font-semibold hover:text-theme-primary transition-colors">Creations</a>
-                    <a href="#content" class="text-sm font-semibold hover:text-theme-primary transition-colors">Content</a>
-                    <a href="#support" class="text-sm font-semibold hover:text-theme-primary transition-colors">Support</a>
-                    <a href="#contact" class="text-sm font-semibold hover:text-theme-primary transition-colors">Contact</a>
+
+                <a href="#" class="minimal-card flex items-center p-4 bg-white rounded-2xl group">
+                    <div class="w-12 h-12 flex items-center justify-center rounded-xl bg-theme-secondary/20 mr-4 group-hover:bg-[#E1306C]/10 transition-colors">
+                        <i class="fa-brands fa-instagram text-xl text-theme-primary group-hover:text-[#E1306C] transition-colors"></i>
+                    </div>
+                    <div class="flex-grow">
+                        <h3 class="font-bold text-theme-text group-hover:text-theme-primary transition-colors">Instagram</h3>
+                        <p class="text-xs text-theme-text/60 font-medium">Behind the scenes art</p>
+                    </div>
+                    <i class="fa-solid fa-arrow-right text-theme-secondary group-hover:text-theme-primary transition-colors group-hover:translate-x-1 transform duration-300"></i>
+                </a>
+
+                <a href="#" class="minimal-card flex items-center p-4 bg-white rounded-2xl group">
+                    <div class="w-12 h-12 flex items-center justify-center rounded-xl bg-theme-secondary/20 mr-4 group-hover:bg-[#fa5c5c]/10 transition-colors">
+                        <i class="fa-brands fa-itch-io text-xl text-theme-primary group-hover:text-[#fa5c5c] transition-colors"></i>
+                    </div>
+                    <div class="flex-grow">
+                        <h3 class="font-bold text-theme-text group-hover:text-theme-primary transition-colors">Itch.io</h3>
+                        <p class="text-xs text-theme-text/60 font-medium">Play my indie games</p>
+                    </div>
+                    <i class="fa-solid fa-arrow-right text-theme-secondary group-hover:text-theme-primary transition-colors group-hover:translate-x-1 transform duration-300"></i>
+                </a>
+
+                <a href="#" class="minimal-card flex items-center p-4 bg-white rounded-2xl group">
+                    <div class="w-12 h-12 flex items-center justify-center rounded-xl bg-theme-secondary/20 mr-4 group-hover:bg-[#1DA1F2]/10 transition-colors">
+                        <i class="fa-brands fa-twitter text-xl text-theme-primary group-hover:text-[#1DA1F2] transition-colors"></i>
+                    </div>
+                    <div class="flex-grow">
+                        <h3 class="font-bold text-theme-text group-hover:text-theme-primary transition-colors">Twitter / X</h3>
+                        <p class="text-xs text-theme-text/60 font-medium">Bite-sized updates</p>
+                    </div>
+                    <i class="fa-solid fa-arrow-right text-theme-secondary group-hover:text-theme-primary transition-colors group-hover:translate-x-1 transform duration-300"></i>
+                </a>
+                
+            </section>
+
+            <!-- SECTION 2: Projects & Games -->
+            <section id="section-projects" class="hidden-section w-full animate-fade-in">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <!-- Project 1 -->
+                    <div class="minimal-card bg-white rounded-2xl overflow-hidden flex flex-col h-full shadow-sm">
+                        <div class="h-48 w-full bg-theme-secondary/30 relative">
+                            <img src="https://placehold.co/600x400/8A3FFC/FFFFFF?text=Simian+Quest" alt="Game Screenshot" class="w-full h-full object-cover mix-blend-multiply opacity-80">
+                            <span class="absolute top-3 right-3 bg-white/90 backdrop-blur-sm text-theme-text text-xs font-bold px-3 py-1 rounded-full border border-theme-secondary/50">WIP Game</span>
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-extrabold text-theme-text mb-2">Simian Quest</h3>
+                            <p class="text-sm text-theme-text/70 mb-6 flex-grow leading-relaxed font-medium">
+                                A fast-paced 2D Metroidvania built in Godot. Master vine-swinging mechanics and explore lush interconnected jungle ruins.
+                            </p>
+                            <a href="#" class="w-full text-center py-2.5 rounded-xl bg-theme-primary text-white text-sm font-bold hover:bg-theme-primaryHover transition-colors shadow-md shadow-theme-primary/30">
+                                View on Steam
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="minimal-card bg-white rounded-2xl overflow-hidden flex flex-col h-full shadow-sm">
+                        <div class="h-48 w-full bg-theme-secondary/30 relative">
+                            <img src="https://placehold.co/600x400/8A3FFC/FFFFFF?text=Godot+Dialogue" alt="Plugin Screenshot" class="w-full h-full object-cover mix-blend-multiply opacity-80">
+                            <span class="absolute top-3 right-3 bg-white/90 backdrop-blur-sm text-theme-text text-xs font-bold px-3 py-1 rounded-full border border-theme-secondary/50">Godot Tool</span>
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-extrabold text-theme-text mb-2">Instructor Dialogue System</h3>
+                            <p class="text-sm text-theme-text/70 mb-6 flex-grow leading-relaxed font-medium">
+                                A powerful, node-based dialogue plugin for Godot 4. Features branching paths, custom variables, and an intuitive custom editor.
+                            </p>
+                            <a href="#" class="w-full text-center py-2.5 rounded-xl bg-white text-theme-primary border-2 border-theme-secondary hover:border-theme-primary transition-colors text-sm font-bold">
+                                Get Source Code
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- NEW FOOTER SECTION -->
+    <footer class="bg-theme-footerBg text-theme-footerText w-full pt-16 pb-8 border-t-4 border-theme-primary relative overflow-hidden mt-auto">
+        <!-- Subtle background design element -->
+        <div class="absolute -top-24 -right-24 w-64 h-64 bg-theme-primary opacity-10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-24 -left-24 w-48 h-48 bg-theme-secondary opacity-10 rounded-full blur-2xl pointer-events-none"></div>
+
+        <div class="max-w-5xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 relative z-10">
+            
+            <!-- Column 1: About -->
+            <div class="flex flex-col">
+                <h4 class="text-white text-lg font-bold mb-4 flex items-center gap-2">
+                    <i class="fa-solid fa-ghost text-theme-primary"></i> About Me
+                </h4>
+                <p class="text-sm text-theme-footerText/80 leading-relaxed font-medium mb-4">
+                    I am an Indie Game Developer and Open-Source Tool Creator. My goal is to build immersive experiences and give back to the development community with free, accessible tools.
+                </p>
+                <div class="flex items-center gap-2 mt-auto">
+                    <i class="fa-solid fa-location-dot text-theme-secondary"></i>
+                    <span class="text-xs text-theme-footerText/60">Based in India</span>
+                </div>
+            </div>
+
+            <!-- Column 2: Contact -->
+            <div class="flex flex-col">
+                <h4 class="text-white text-lg font-bold mb-4 flex items-center gap-2">
+                    <i class="fa-regular fa-paper-plane text-theme-primary"></i> Get In Touch
+                </h4>
+                <p class="text-sm text-theme-footerText/80 leading-relaxed font-medium mb-6">
+                    Interested in a collaboration, have questions about my tools, or just want to say hi? My inbox is always open.
+                </p>
+                <a href="mailto:hello@example.com" class="inline-flex items-center justify-center gap-2 bg-theme-primary hover:bg-theme-secondary hover:text-theme-footerBg text-white py-2.5 px-5 rounded-lg text-sm font-bold transition-all w-fit shadow-lg shadow-theme-primary/20">
+                    <i class="fa-solid fa-envelope"></i> Email Me
+                </a>
+            </div>
+
+            <!-- Column 3: Support & QR -->
+            <div class="flex flex-col">
+                <h4 class="text-white text-lg font-bold mb-4 flex items-center gap-2">
+                    <i class="fa-solid fa-heart text-theme-primary"></i> Support My Work
+                </h4>
+                <p class="text-sm text-theme-footerText/80 leading-relaxed font-medium mb-5">
+                    If you enjoy my games or find my free tools helpful, consider supporting me!
+                </p>
+                
+                <div class="flex items-end gap-5">
+                    <!-- Patreon -->
+                    <a href="#" class="group flex flex-col items-center gap-1 transition-transform hover:-translate-y-1">
+                        <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-[#FF424D] transition-colors">
+                            <i class="fa-brands fa-patreon text-theme-footerText group-hover:text-white"></i>
+                        </div>
+                        <span class="text-[10px] font-semibold text-theme-footerText/60 group-hover:text-white">Patreon</span>
+                    </a>
+                    
+                    <!-- Itch.io -->
+                    <a href="#" class="group flex flex-col items-center gap-1 transition-transform hover:-translate-y-1">
+                        <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-[#fa5c5c] transition-colors">
+                            <i class="fa-brands fa-itch-io text-theme-footerText group-hover:text-white"></i>
+                        </div>
+                        <span class="text-[10px] font-semibold text-theme-footerText/60 group-hover:text-white">Itch.io</span>
+                    </a>
+
+                    <!-- UPI QR Reveal (Hover/Click) -->
+                    <div class="relative group flex flex-col items-center gap-1 cursor-pointer transition-transform hover:-translate-y-1">
+                        <div class="w-10 h-10 rounded-full bg-theme-primary/20 flex items-center justify-center group-hover:bg-theme-primary transition-colors border border-theme-primary/30">
+                            <i class="fa-solid fa-qrcode text-theme-primary group-hover:text-white"></i>
+                        </div>
+                        <span class="text-[10px] font-semibold text-theme-primary group-hover:text-white">UPI QR</span>
+                        
+                        <!-- The hidden QR Code Image Box -->
+                        <div class="absolute bottom-full mb-3 left-1/2 -translate-x-1/2 hidden group-hover:block z-50 animate-fade-in origin-bottom">
+                            <div class="bg-white p-2 rounded-xl shadow-2xl shadow-black/50 border-2 border-theme-primary flex flex-col items-center w-32">
+                                <!-- Placeholder for actual QR code -->
+                                <img src="https://placehold.co/150x150/1A0536/FFFFFF?text=SCAN+ME" alt="UPI QR Code" class="w-full aspect-square rounded-lg mb-1">
+                                <span class="text-[10px] font-extrabold text-theme-footerBg text-center leading-tight">Pay via UPI</span>
+                            </div>
+                            <!-- Small triangle pointer pointing down -->
+                            <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-theme-primary rotate-45 rounded-sm"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </nav>
-
-    <main class="flex-grow pt-24 pb-12">
-        <section class="px-4 flex flex-col items-center justify-center text-center mb-12">
-            <div class="w-28 h-28 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-white mb-4 shadow-lg shadow-theme-sage/40">
-                <img src="https://placehold.co/200x200/8BA888/FFFFFF?text=B" alt="Profile" class="w-full h-full object-cover">
-            </div>
-            <h1 class="text-3xl md:text-4xl font-extrabold mb-2 text-theme-text">Buddhadeb</h1>
-            <p class="text-theme-primary font-bold mb-3 flex items-center gap-2">
-                <i class="fa-solid fa-code"></i> Indie Dev & Tool Creator
+        
+        <div class="mt-12 pt-6 border-t border-white/10 text-center">
+            <p class="text-xs text-theme-footerText/40 font-medium tracking-wide">
+                &copy; 2026 Buddhadeb. Designed with minimalism.
             </p>
-            <p class="max-w-md text-theme-text/80 text-sm md:text-base font-medium">
-                Building cozy Metroidvanias and robust open-source tools for Godot, Blender, and Krita.
-            </p>
-        </section>
-
-        <section id="links" class="px-4 w-full max-w-xl mx-auto flex flex-col gap-3 mb-20">
-            <a href="#" class="link-btn flex items-center p-4 bg-white rounded-xl border border-theme-sage/40 group shadow-sm">
-                <div class="w-10 h-10 flex items-center justify-center rounded-lg bg-[#FF0000]/10 mr-4">
-                    <i class="fa-brands fa-youtube text-xl text-[#FF0000]"></i>
-                </div>
-                <span class="font-bold text-lg flex-grow text-left">YouTube</span>
-                <i class="fa-solid fa-arrow-right text-theme-sage group-hover:text-theme-olive transition-colors"></i>
-            </a>
-
-            <a href="#" class="link-btn flex items-center p-4 bg-white rounded-xl border border-theme-sage/40 group shadow-sm">
-                <div class="w-10 h-10 flex items-center justify-center rounded-lg bg-[#E1306C]/10 mr-4">
-                    <i class="fa-brands fa-instagram text-xl text-[#E1306C]"></i>
-                </div>
-                <span class="font-bold text-lg flex-grow text-left">Instagram</span>
-                <i class="fa-solid fa-arrow-right text-theme-sage group-hover:text-theme-olive transition-colors"></i>
-            </a>
-
-            <a href="#" class="link-btn flex items-center p-4 bg-white rounded-xl border border-theme-sage/40 group shadow-sm">
-                <div class="w-10 h-10 flex items-center justify-center rounded-lg bg-[#fa5c5c]/10 mr-4">
-                    <i class="fa-brands fa-itch-io text-xl text-[#fa5c5c]"></i>
-                </div>
-                <span class="font-bold text-lg flex-grow text-left">Itch.io Games</span>
-                <i class="fa-solid fa-arrow-right text-theme-sage group-hover:text-theme-olive transition-colors"></i>
-            </a>
-
-            <a href="#" class="link-btn flex items-center p-4 bg-white rounded-xl border border-theme-sage/40 group shadow-sm">
-                <div class="w-10 h-10 flex items-center justify-center rounded-lg bg-[#1DA1F2]/10 mr-4">
-                    <i class="fa-brands fa-twitter text-xl text-[#1DA1F2]"></i>
-                </div>
-                <span class="font-bold text-lg flex-grow text-left">Twitter / X</span>
-                <i class="fa-solid fa-arrow-right text-theme-sage group-hover:text-theme-olive transition-colors"></i>
-            </a>
-
-            <a href="#" class="link-btn flex items-center p-4 bg-white rounded-xl border border-theme-sage/40 group shadow-sm">
-                <div class="w-10 h-10 flex items-center justify-center rounded-lg bg-[#2185D0]/10 mr-4">
-                    <i class="fa-solid fa-code-branch text-xl text-[#2185D0]"></i>
-                </div>
-                <span class="font-bold text-lg flex-grow text-left">Codeberg / Open Source</span>
-                <i class="fa-solid fa-arrow-right text-theme-sage group-hover:text-theme-olive transition-colors"></i>
-            </a>
-        </section>
-
-        <section id="creations" class="py-16 bg-white border-y border-theme-sage/20">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl font-extrabold mb-3 text-theme-text">Creations Showcase</h2>
-                    <p class="text-theme-text/80 max-w-2xl mx-auto font-medium">My active game projects and tools built for the creative community.</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    
-                    <div class="hover-card bg-theme-bg rounded-2xl overflow-hidden border border-theme-sage/40 flex flex-col h-full">
-                        <div class="relative h-60 w-full bg-theme-sage/20">
-                            <img src="https://placehold.co/800x500/8BA888/4A5D4E?text=Monkey+Metroidvania" alt="Monkey Metroidvania" class="w-full h-full object-cover mix-blend-multiply opacity-90">
-                            <div class="absolute top-4 right-4 bg-theme-primary text-white text-xs font-bold px-3 py-1.5 rounded shadow-sm">
-                                <i class="fa-solid fa-gamepad mr-1"></i> WIP Game
-                            </div>
-                        </div>
-                        <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="text-xl font-bold mb-2">Simian Quest (Working Title)</h3>
-                            <p class="text-sm text-theme-text/80 mb-6 flex-grow leading-relaxed">
-                                A fast-paced 2D Metroidvania starring an agile monkey protagonist. Master vine-swinging mechanics, explore lush interconnected jungle ruins, and overcome challenging boss encounters. Built entirely in Godot 4.
-                            </p>
-                            <div class="flex gap-3 mt-auto">
-                                <a href="#" class="flex-1 flex items-center justify-center gap-2 bg-theme-text hover:bg-theme-olive text-white py-2.5 rounded-lg text-sm font-bold transition-colors">
-                                    <i class="fa-brands fa-steam"></i> Steam
-                                </a>
-                                <a href="#" class="flex-1 flex items-center justify-center gap-2 bg-white text-theme-text border border-theme-sage hover:border-theme-olive py-2.5 rounded-lg text-sm font-bold transition-colors">
-                                    <i class="fa-brands fa-itch-io text-[#fa5c5c]"></i> Itch.io
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="hover-card bg-theme-bg rounded-2xl overflow-hidden border border-theme-sage/40 flex flex-col h-full">
-                        <div class="relative h-60 w-full bg-theme-sage/20">
-                            <img src="https://placehold.co/800x500/8BA888/4A5D4E?text=Godot+Dialogue+System" alt="Godot Dialogue Plugin" class="w-full h-full object-cover mix-blend-multiply opacity-90">
-                            <div class="absolute top-4 right-4 bg-theme-olive text-white text-xs font-bold px-3 py-1.5 rounded shadow-sm">
-                                <i class="fa-solid fa-puzzle-piece mr-1"></i> Godot 4
-                            </div>
-                        </div>
-                        <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="text-xl font-bold mb-2">Instructor Dialogue System</h3>
-                            <p class="text-sm text-theme-text/80 mb-6 flex-grow leading-relaxed">
-                                A powerful, node-based dialogue plugin for Godot 4. Features branching paths, custom variables, dynamic localization support, and an intuitive custom editor built right into the Godot engine UI.
-                            </p>
-                            <div class="flex gap-3 mt-auto">
-                                <a href="#" class="w-full flex items-center justify-center gap-2 bg-white text-theme-text border border-theme-sage hover:border-theme-olive py-2.5 rounded-lg text-sm font-bold transition-colors">
-                                    <i class="fa-brands fa-github"></i> Get Source Code
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="hover-card bg-theme-bg rounded-2xl overflow-hidden border border-theme-sage/40 flex flex-col h-full">
-                        <div class="relative h-48 w-full bg-theme-sage/20">
-                            <img src="https://placehold.co/800x400/8BA888/4A5D4E?text=Blender+Add-on" alt="Blender Python Add-ons" class="w-full h-full object-cover mix-blend-multiply opacity-90">
-                            <div class="absolute top-3 right-3 bg-[#E87D0D] text-white text-xs font-bold px-3 py-1.5 rounded shadow-sm">
-                                <i class="fa-brands fa-python mr-1"></i> Blender
-                            </div>
-                        </div>
-                        <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="text-xl font-bold mb-2">Blender Batch Pipeline</h3>
-                            <p class="text-sm text-theme-text/80 mb-6 flex-grow">
-                                Python add-ons designed to automate modular asset export. Fixes origins, applies transforms, and standardizes naming conventions for game engines in one click.
-                            </p>
-                            <a href="#" class="w-full flex items-center justify-center gap-2 bg-white text-theme-text border border-theme-sage hover:border-theme-olive py-2 rounded-lg text-sm font-bold transition-colors">
-                                <i class="fa-solid fa-download"></i> Download Tool
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="hover-card bg-theme-bg rounded-2xl overflow-hidden border border-theme-sage/40 flex flex-col h-full">
-                        <div class="relative h-48 w-full bg-theme-sage/20">
-                            <img src="https://placehold.co/800x400/8BA888/4A5D4E?text=Krita+Exporter" alt="Krita Advance Exporter" class="w-full h-full object-cover mix-blend-multiply opacity-90">
-                            <div class="absolute top-3 right-3 bg-[#38A4E5] text-white text-xs font-bold px-3 py-1.5 rounded shadow-sm">
-                                <i class="fa-solid fa-paintbrush mr-1"></i> Krita
-                            </div>
-                        </div>
-                        <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="text-xl font-bold mb-2">Krita Advance Exporter</h3>
-                            <p class="text-sm text-theme-text/80 mb-6 flex-grow">
-                                A specialized script for Krita that allows batch exporting of sprite sheets, individual layers, and automated cropping, streamlining the 2D game art pipeline.
-                            </p>
-                            <a href="#" class="w-full flex items-center justify-center gap-2 bg-white text-theme-text border border-theme-sage hover:border-theme-olive py-2 rounded-lg text-sm font-bold transition-colors">
-                                <i class="fa-solid fa-download"></i> Download Tool
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <section id="content" class="py-16 bg-theme-bg">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-10">
-                    <h2 class="text-3xl font-extrabold mb-3">Content & Media</h2>
-                    <p class="text-theme-text/80 max-w-2xl mx-auto font-medium">Watch my latest devlogs or check out behind-the-scenes updates.</p>
-                </div>
-                
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    <!-- YouTube Feature -->
-                    <div class="lg:col-span-2 bg-white rounded-2xl border border-theme-sage/40 p-4 shadow-sm">
-                        <div class="flex items-center gap-3 mb-4 px-2">
-                            <i class="fa-brands fa-youtube text-2xl text-[#FF0000]"></i>
-                            <h3 class="font-bold text-lg">Latest Devlog</h3>
-                        </div>
-                        <div class="aspect-video w-full bg-theme-sage/20 rounded-xl overflow-hidden relative flex items-center justify-center group cursor-pointer">
-                            <img src="https://placehold.co/1280x720/8BA888/4A5D4E?text=Video+Thumbnail" alt="Video Placeholder" class="absolute inset-0 w-full h-full object-cover mix-blend-multiply opacity-80">
-                            <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center z-10 shadow-lg group-hover:scale-110 transition-transform">
-                                <i class="fa-solid fa-play text-theme-primary text-xl ml-1"></i>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Instagram Feature -->
-                    <div class="bg-white rounded-2xl border border-theme-sage/40 p-4 shadow-sm">
-                        <div class="flex items-center gap-3 mb-4 px-2">
-                            <i class="fa-brands fa-instagram text-2xl text-[#E1306C]"></i>
-                            <h3 class="font-bold text-lg">Recent Post</h3>
-                        </div>
-                        <div class="aspect-square w-full bg-theme-sage/20 rounded-xl overflow-hidden relative">
-                            <img src="https://placehold.co/600x600/8BA888/4A5D4E?text=Insta+Post" alt="Instagram Placeholder" class="w-full h-full object-cover mix-blend-multiply opacity-80">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="support" class="py-16 bg-white border-y border-theme-sage/20">
-            <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center">
-                <h2 class="text-3xl font-extrabold mb-4">Support My Work</h2>
-                <p class="text-theme-text/80 mb-10 max-w-xl mx-auto font-medium">If you find my free tools useful or want to support my game development journey, consider leaving a tip!</p>
-                
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-                    <!-- Ko-fi -->
-                    <a href="#" class="flex flex-col items-center justify-center p-6 bg-theme-bg rounded-xl border border-theme-sage/40 hover:border-theme-olive hover:shadow-md transition-all">
-                        <i class="fa-solid fa-mug-hot text-3xl text-theme-primary mb-3"></i>
-                        <h3 class="font-bold">Ko-fi</h3>
-                    </a>
-                    
-                    <!-- Patreon -->
-                    <a href="#" class="flex flex-col items-center justify-center p-6 bg-theme-bg rounded-xl border border-theme-sage/40 hover:border-theme-olive hover:shadow-md transition-all">
-                        <i class="fa-brands fa-patreon text-3xl text-[#FF424D] mb-3"></i>
-                        <h3 class="font-bold">Patreon</h3>
-                    </a>
-
-                    <!-- UPI Placeholder -->
-                    <div class="col-span-2 md:col-span-1 flex flex-col items-center justify-center p-6 bg-theme-bg rounded-xl border border-theme-sage/40 relative group overflow-hidden cursor-pointer">
-                        <div class="absolute inset-0 bg-white opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center p-2 z-10">
-                            <img src="https://placehold.co/100x100/8BA888/4A5D4E?text=QR" class="w-16 h-16 mb-1 rounded">
-                            <span class="text-[10px] font-bold">Scan to Pay</span>
-                        </div>
-                        <i class="fa-solid fa-qrcode text-3xl text-theme-olive mb-3"></i>
-                        <h3 class="font-bold">UPI / QR</h3>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="py-20 bg-theme-bg">
-            <div class="max-w-3xl mx-auto px-4 sm:px-6">
-                <div class="text-center mb-8">
-                    <h2 class="text-3xl font-extrabold mb-3">Contact & Newsletter</h2>
-                    <p class="text-theme-text/80 font-medium">Send me a message or subscribe to the devlog. Powered by Google Forms.</p>
-                </div>
-                
-                <div class="bg-white p-2 md:p-6 rounded-2xl border border-theme-sage/40 shadow-md flex justify-center w-full">
-                    
-                    <!-- 
-                        REPLACE THE IFRAME BELOW WITH YOUR GOOGLE FORMS EMBED CODE.
-                        Ensure you keep width="100%" so it fits perfectly on mobile and desktop!
-                    -->
-                    <iframe 
-                        src="https://docs.google.com/forms/d/e/1FAIpQLScy6UEMqkxS9CYnlpHOrEaSmy1FzfA7jkFiXmr--7-U_R3_rg/viewform?usp=publish-editor" 
-                        width="100%" 
-                        height="650" 
-                        frameborder="0" 
-                        marginheight="0" 
-                        marginwidth="0"
-                        class="max-w-full rounded-lg"
-                        style="background: transparent;">
-                        Loading form...
-                    </iframe>
-
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <footer class="bg-white border-t border-theme-sage/30 pt-12 pb-8">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                <div>
-                    <h4 class="font-extrabold text-lg mb-3">About Me</h4>
-                    <p class="text-theme-text/70 text-sm font-medium leading-relaxed max-w-sm mb-4">
-                        I create open-source software and indie games. I believe in giving back to the gamedev community through robust tools for Godot and Blender.
-                    </p>
-                    <div class="flex items-center gap-2 text-sm text-theme-text/80 font-bold">
-                        <i class="fa-solid fa-code-merge text-theme-sage"></i> 
-                        <span>@BuddhadebDev</span>
-                    </div>
-                </div>
-                
-                <div class="md:text-right flex flex-col md:items-end justify-center">
-                    <div class="flex items-start gap-3 text-sm text-theme-text/70 font-medium bg-theme-bg p-4 rounded-xl border border-theme-sage/20 w-fit">
-                        <i class="fa-solid fa-location-dot mt-1 text-theme-primary"></i>
-                        <p class="text-left">
-                            <strong>Studio Base</strong><br>
-                            Kolkata, West Bengal<br>
-                            India
-                        </p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="pt-6 border-t border-theme-sage/20 flex flex-col md:flex-row justify-between items-center gap-4 text-sm font-semibold text-theme-text/50">
-                <p>&copy; 2026 Buddhadeb. All rights reserved.</p>
-                <div class="flex gap-4">
-                    <a href="#links" class="hover:text-theme-primary transition-colors">Back to top</a>
-                </div>
-            </div>
         </div>
     </footer>
 
+    <script>
+        function switchTab(tabName) {
+            const socialsBtn = document.getElementById('btn-socials');
+            const projectsBtn = document.getElementById('btn-projects');
+            const socialsSection = document.getElementById('section-socials');
+            const projectsSection = document.getElementById('section-projects');
+
+            // Reset animation to trigger it again
+            socialsSection.classList.remove('animate-fade-in');
+            projectsSection.classList.remove('animate-fade-in');
+            
+            // Trigger reflow to restart animation
+            void socialsSection.offsetWidth; 
+            void projectsSection.offsetWidth;
+
+            if (tabName === 'socials') {
+                // Show Socials
+                socialsSection.classList.remove('hidden-section');
+                projectsSection.classList.add('hidden-section');
+                socialsSection.classList.add('animate-fade-in');
+                
+                // Style Socials Button (Active)
+                socialsBtn.classList.add('bg-white', 'text-theme-primary', 'shadow-sm', 'border-theme-secondary/50');
+                socialsBtn.classList.remove('text-theme-text/60', 'hover:text-theme-primary', 'border-transparent');
+                
+                // Style Projects Button (Inactive)
+                projectsBtn.classList.remove('bg-white', 'text-theme-primary', 'shadow-sm', 'border-theme-secondary/50');
+                projectsBtn.classList.add('text-theme-text/60', 'hover:text-theme-primary', 'border-transparent');
+                
+            } else if (tabName === 'projects') {
+                // Show Projects
+                projectsSection.classList.remove('hidden-section');
+                socialsSection.classList.add('hidden-section');
+                projectsSection.classList.add('animate-fade-in');
+                
+                // Style Projects Button (Active)
+                projectsBtn.classList.add('bg-white', 'text-theme-primary', 'shadow-sm', 'border-theme-secondary/50');
+                projectsBtn.classList.remove('text-theme-text/60', 'hover:text-theme-primary', 'border-transparent');
+                
+                // Style Socials Button (Inactive)
+                socialsBtn.classList.remove('bg-white', 'text-theme-primary', 'shadow-sm', 'border-theme-secondary/50');
+                socialsBtn.classList.add('text-theme-text/60', 'hover:text-theme-primary', 'border-transparent');
+            }
+        }
+    </script>
 </body>
 </html>
